@@ -82,7 +82,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center cursor-pointer" onClick={() => setActiveTab('home')}>
             <img
-              src="/akuno.png"
+              src="akuno.png"
               alt="Logo Akuno"
               className="w-8 h-8 rounded-lg mr-2 shadow-lg shadow-blue-500/20"
             />
@@ -470,7 +470,7 @@ const Footer = ({ setActiveTab }) => (
         <div className="col-span-1 md:col-span-2">
           <div className="flex items-center mb-4">
             <img
-              src="/akuno.png"
+              src="akuno.png"
               alt="Logo Akuno"
               className="w-8 h-8 rounded-lg mr-2"
             />
