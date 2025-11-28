@@ -466,49 +466,95 @@ const LegalPage = () => {
 };
 
 const PatchNotesPage = () => {
-const patchnotes = [
-{
-date: "28/11/2025 - 23h19",
-version: "v1.4.2",
-content: `
-### 🔧 Patch Note - Akuno
+  // J'ai ajouté une fausse version plus ancienne pour te montrer l'effet "Timeline"
+  const patchnotes = [
+    {
+      date: "28 Novembre 2025",
+      version: "v1.4.2",
+      tag: "Mise à jour", // Nouveau champ pour le style
+      content: `
+### 🚀 Nouveautés
+* **Système de Rôle Menu** : Créez des menus interactifs avec la commande \`/rolemenu\`.
+* **TempVoice (Premium)** : Système de salons vocaux temporaires "Join to Create".
 
-
-**Nouvelles Commandes :**
-✅ **/rolemenu** : Création de menus de rôles interactifs.
-✅ **/tempvoice** : Premium, système Join to Create.
-
-
-**Permissions :**
-• /rolemenu : Administrateur
-• /tempvoice : Propriétaire (Premium)
-
-
-*Mise à jour déployée.*
-`
-}
-];
+### 🛡️ Permissions
+* Ajout de la permission \`Administrator\` requise pour les menus de rôles.
+      `
+    },
+    {
+      date: "15 Novembre 2025",
+      version: "v1.4.1",
+      tag: "Correctif",
+      content: `
+### 🐛 Corrections de bugs
+* Correction d'un bug sur la commande \`/ban\` qui ne prenait pas en compte certains ID.
+* Optimisation de la latence du bot.
+      `
+    }
+  ];
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 bg-slate-900">
-      <div className="max-w-4xl mx-auto bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-xl">
-        <h1 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-          <FileText className="w-8 h-8 text-blue-400"/>
-          Patch Notes
-        </h1>
-
-        {patchnotes.map((pn, idx) => (
-          <div key={idx} className="mb-10 pb-6 border-b border-slate-700 last:border-none">
-            <p className="text-sm text-slate-400 mb-2">
-              📅 <strong>{pn.date}</strong> — Version <strong>{pn.version}</strong>
-            </p>
-
-            <div
-              className="prose prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: marked.parse(pn.content) }}
-            />
+    <div className="min-h-screen pt-24 pb-20 px-4 bg-slate-900">
+      <div className="max-w-4xl mx-auto">
+        
+        {/* En-tête de la page */}
+        <div className="text-center mb-16 space-y-4">
+          <div className="inline-flex items-center justify-center p-3 bg-blue-500/10 rounded-xl mb-4">
+            <ScrollText className="w-8 h-8 text-blue-400" />
           </div>
-        ))}
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            Notes de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Mise à jour</span>
+          </h1>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Suivez l'évolution d'Akuno, découvrez les nouvelles fonctionnalités et les correctifs apportés.
+          </p>
+        </div>
+
+        {/* Timeline Container */}
+        <div className="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+          
+          {patchnotes.map((pn, idx) => (
+            <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+              
+              {/* Point sur la timeline */}
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-900 group-hover:bg-slate-800 group-hover:border-blue-500/50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-300">
+                <FileText className="w-5 h-5 text-blue-400" />
+              </div>
+              
+              {/* Carte de contenu */}
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 bg-slate-800/50 backdrop-blur border border-slate-700 rounded-2xl shadow-xl hover:border-blue-500/30 transition-all duration-300">
+                
+                {/* Header de la carte */}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                  <div className="flex items-center gap-3">
+                    <span className="px-3 py-1 text-sm font-bold text-white bg-blue-600 rounded-lg shadow-lg shadow-blue-500/20">
+                      {pn.version}
+                    </span>
+                    <span className={`text-xs font-medium px-2 py-0.5 rounded border ${
+                      pn.tag === 'Correctif' 
+                        ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' 
+                        : 'bg-green-500/10 text-green-400 border-green-500/20'
+                    }`}>
+                      {pn.tag}
+                    </span>
+                  </div>
+                  <time className="text-sm text-slate-500 font-mono">{pn.date}</time>
+                </div>
+
+                {/* Contenu Markdown Stylisé */}
+                <div 
+                  className="prose prose-invert prose-sm max-w-none 
+                    prose-headings:text-blue-300 prose-headings:font-bold prose-headings:mb-3 prose-headings:mt-4
+                    prose-p:text-slate-300 prose-p:leading-relaxed
+                    prose-li:text-slate-300 prose-li:marker:text-blue-500
+                    prose-strong:text-white prose-strong:font-bold"
+                  dangerouslySetInnerHTML={{ __html: marked.parse(pn.content) }}
+                />
+              </div>
+            </div>
+          ))}
+
+        </div>
       </div>
     </div>
   );
