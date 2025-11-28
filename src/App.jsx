@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { marked } from "marked";
 import { 
   Shield, 
   Info, 
@@ -73,6 +74,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
     { id: 'home', label: 'Accueil' },
     { id: 'add', label: 'Ajouter le bot' },
     { id: 'contact', label: 'Contact' },
+    { id: 'patchnotes', label: 'Patch Notes' },
     { id: 'legal', label: 'CGU & TOS' },
   ];
 
@@ -463,6 +465,52 @@ const LegalPage = () => {
   );
 };
 
+const PatchNotesPage = () => {
+  const patchnotes = [
+    {
+      date: "28/11/2025 - 23h19",
+      version: "v1.4.2",
+      content: `
+### 🔧 Patch Note - Akuno
+
+**Nouvelles Commandes :**
+✅ **/rolemenu** : Création de menus de rôles interactifs via boutons.  
+✅ **/tempvoice** : [Premium] Système de "Join to Create".
+
+**Permissions :**
+• /rolemenu : Administrateur  
+• /tempvoice : Propriétaire (Premium)
+
+*Mise à jour déployée.*
+      `
+    }
+  ];
+
+  return (
+    <div className="min-h-screen pt-24 pb-16 px-4 bg-slate-900">
+      <div className="max-w-4xl mx-auto bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-xl">
+        <h1 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+          <FileText className="w-8 h-8 text-blue-400"/>
+          Patch Notes
+        </h1>
+
+        {patchnotes.map((pn, idx) => (
+          <div key={idx} className="mb-10 pb-6 border-b border-slate-700 last:border-none">
+            <p className="text-sm text-slate-400 mb-2">
+              📅 <strong>{pn.date}</strong> — Version <strong>{pn.version}</strong>
+            </p>
+
+            <div
+              className="prose prose-invert max-w-none"
+              dangerouslySetInnerHTML={{ __html: marked.parse(pn.content) }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Footer = ({ setActiveTab }) => (
   <footer className="bg-slate-950 border-t border-slate-800 pt-12 pb-8">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -542,6 +590,12 @@ const App = () => {
         {activeTab === 'contact' && (
           <div className="animate-in fade-in zoom-in-95 duration-500">
             <ContactPage />
+          </div>
+        )}
+
+        {activeTab === 'patchnotes' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <PatchNotesPage />
           </div>
         )}
         
