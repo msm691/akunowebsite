@@ -466,32 +466,66 @@ const LegalPage = () => {
 };
 
 const PatchNotesPage = () => {
-  // J'ai ajouté une fausse version plus ancienne pour te montrer l'effet "Timeline"
   const patchnotes = [
     {
-      date: "28 Novembre 2025",
-      version: "v1.4.2",
-      tag: "Mise à jour", // Nouveau champ pour le style
+      date: "28 Novembre 2025 - 23h19",
+      version: "v1.2.2",
+      tag: "Nouveautés",
+      tagColor: "blue", // Pour personnaliser la couleur du badge
       content: `
-### 🚀 Nouveautés
-* **Système de Rôle Menu** : Créez des menus interactifs avec la commande \`/rolemenu\`.
-* **TempVoice (Premium)** : Système de salons vocaux temporaires "Join to Create".
+### ✨ Nouvelles Commandes
+* **\`/rolemenu\`** : Création de menus de rôles interactifs via boutons (Self-assign roles).
+* **\`/tempvoice\`** : *[Premium]* Système de "Join to Create". Crée des salons vocaux temporaires et les supprime après usage.
 
 ### 🛡️ Permissions
-* Ajout de la permission \`Administrator\` requise pour les menus de rôles.
+* **\`/rolemenu\`** : Nécessite le niveau *Administrateur*.
+* **\`/tempvoice\`** : Nécessite le niveau *Propriétaire* (Premium).
       `
     },
     {
-      date: "15 Novembre 2025",
-      version: "v1.4.1",
+      date: "28 Novembre 2025 - 10h59",
+      version: "Hotfix",
       tag: "Correctif",
+      tagColor: "orange",
       content: `
-### 🐛 Corrections de bugs
-* Correction d'un bug sur la commande \`/ban\` qui ne prenait pas en compte certains ID.
-* Optimisation de la latence du bot.
+### 🚑 Correctif de Stabilité
+Un correctif a été déployé pour résoudre des problèmes de permissions.
+
+* **Crash \`/setup\` & \`/lock\`** : Le bot ne plantera plus s'il lui manque des permissions. Il envoie désormais un message d'erreur clair.
+* **Optimisation** : Nettoyage du code interne et correction d'avertissements techniques pour une meilleure fluidité.
+      `
+    },
+    {
+      date: "27 Novembre 2025 - 15h13",
+      version: "v1.2.1",
+      tag: "Mise à jour Globale",
+      tagColor: "purple",
+      content: `
+### 🆕 ADD (Nouveautés)
+* **Système de Sauvegarde (\`/backup\`)** : *[Premium]* Sauvegarde et restaure la structure du serveur (Rôles, Salons, Catégories).
+* **Audit des Permissions (\`/perminfo\`)** : Permet aux propriétaires de voir les accès par niveau.
+* **Système de Timeout (\`/timeout\`)** : Exclusion temporaire native Discord.
+
+### 🔧 FIX (Améliorations)
+* **Stabilité** : Correction définitive des erreurs "Unknown Interaction" sur les commandes lourdes.
+* **Sécurité** : Hiérarchie stricte (impossible de modifier un supérieur) et protection des commandes critiques.
+* **Architecture** : Passage en asynchrone pour \`/premium\`, \`/ia\`, \`/backup\`.
+
+### 🗑️ REMOVE (Retraits)
+* Suppression des systèmes de gestion de latence obsolètes.
+* Nettoyage mémoire.
       `
     }
   ];
+
+  // Helper pour les couleurs des tags
+  const getTagStyle = (color) => {
+    switch(color) {
+      case 'orange': return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
+      case 'purple': return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+      default: return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+    }
+  };
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-4 bg-slate-900">
@@ -527,14 +561,10 @@ const PatchNotesPage = () => {
                 {/* Header de la carte */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
                   <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 text-sm font-bold text-white bg-blue-600 rounded-lg shadow-lg shadow-blue-500/20">
+                    <span className="px-3 py-1 text-sm font-bold text-white bg-slate-700 rounded-lg shadow-sm border border-slate-600">
                       {pn.version}
                     </span>
-                    <span className={`text-xs font-medium px-2 py-0.5 rounded border ${
-                      pn.tag === 'Correctif' 
-                        ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' 
-                        : 'bg-green-500/10 text-green-400 border-green-500/20'
-                    }`}>
+                    <span className={`text-xs font-medium px-2 py-0.5 rounded border ${getTagStyle(pn.tagColor)}`}>
                       {pn.tag}
                     </span>
                   </div>
@@ -544,8 +574,8 @@ const PatchNotesPage = () => {
                 {/* Contenu Markdown Stylisé */}
                 <div 
                   className="prose prose-invert prose-sm max-w-none 
-                    prose-headings:text-blue-300 prose-headings:font-bold prose-headings:mb-3 prose-headings:mt-4
-                    prose-p:text-slate-300 prose-p:leading-relaxed
+                    prose-headings:text-blue-300 prose-headings:font-bold prose-headings:mb-2 prose-headings:mt-4
+                    prose-p:text-slate-300 prose-p:leading-relaxed prose-p:my-2
                     prose-li:text-slate-300 prose-li:marker:text-blue-500
                     prose-strong:text-white prose-strong:font-bold"
                   dangerouslySetInnerHTML={{ __html: marked.parse(pn.content) }}
