@@ -466,46 +466,78 @@ const LegalPage = () => {
 };
 
 const PatchNotesPage = () => {
-  const patchnotes = [
-    {
-      date: "28/11/2025 - 23h19",
-      version: "v1.4.2",
-      content: `
-### 🔧 Patch Note - Akuno
-
-**Nouvelles Commandes :**
-✅ **/rolemenu** : Création de menus de rôles interactifs via boutons.  
-✅ **/tempvoice** : [Premium] Système de "Join to Create".
-
-**Permissions :**
-• /rolemenu : Administrateur  
-• /tempvoice : Propriétaire (Premium)
-
-*Mise à jour déployée.*
-      `
-    }
-  ];
-
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 bg-slate-900">
-      <div className="max-w-4xl mx-auto bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-xl">
-        <h1 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-          <FileText className="w-8 h-8 text-blue-400"/>
-          Patch Notes
-        </h1>
-
-        {patchnotes.map((pn, idx) => (
-          <div key={idx} className="mb-10 pb-6 border-b border-slate-700 last:border-none">
-            <p className="text-sm text-slate-400 mb-2">
-              📅 <strong>{pn.date}</strong> — Version <strong>{pn.version}</strong>
-            </p>
-
-            <div
-              className="prose prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: marked.parse(pn.content) }}
-            />
+    <div className="min-h-screen pt-24 pb-12 bg-slate-900">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center p-3 bg-blue-500/10 rounded-full mb-4">
+            <History className="w-8 h-8 text-blue-400" />
           </div>
-        ))}
+          <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
+            Patch Notes
+          </h1>
+          <p className="mt-4 text-xl text-slate-400">
+            Suivez l'évolution et les mises à jour d'Akuno.
+          </p>
+        </div>
+
+        {/* --- AJOUTEZ VOS NOUVEAUX PATCHS ICI --- */}
+        
+        {/* Patch Note 1 (Le plus récent) */}
+        <div className="bg-slate-800 rounded-2xl shadow-xl border border-slate-700 overflow-hidden mb-8 relative">
+          <div className="absolute top-0 right-0 p-4">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30">
+              Dernière version
+            </span>
+          </div>
+          <div className="p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-8 w-1 bg-blue-500 rounded-full"></div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Mise à jour 28/11/2025</h2>
+                <span className="text-sm text-slate-400">Déployée à 23h19</span>
+              </div>
+            </div>
+            
+            <div className="prose prose-invert prose-blue max-w-none">
+              <h3 className="text-lg font-semibold text-white">🔧 Patch Note - Akuno</h3>
+              
+              <div className="mt-4 space-y-4">
+                <div>
+                  <h4 className="font-bold text-blue-400 mb-2">Nouvelles Commandes :</h4>
+                  <ul className="list-none space-y-2 pl-0">
+                    <li className="flex items-start text-slate-300">
+                      <span className="mr-2">✅</span>
+                      <span>
+                        <code className="bg-slate-900 px-1.5 py-0.5 rounded text-blue-300">/rolemenu</code> : Création de menus de rôles interactifs via boutons (Self-assign roles).
+                      </span>
+                    </li>
+                    <li className="flex items-start text-slate-300">
+                      <span className="mr-2">✅</span>
+                      <span>
+                        <code className="bg-slate-900 px-1.5 py-0.5 rounded text-blue-300">/tempvoice</code> : <span className="text-pink-400 font-semibold">[Premium]</span> Système de "Join to Create". Crée des salons vocaux temporaires et les supprime après usage.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
+                  <h4 className="font-bold text-slate-200 mb-2">Permissions requises :</h4>
+                  <ul className="list-disc pl-5 text-sm text-slate-400 space-y-1">
+                    <li><code className="text-slate-300">/rolemenu</code> : Nécessite le niveau <strong>Administrateur</strong>.</li>
+                    <li><code className="text-slate-300">/tempvoice</code> : (Premium) Nécessite le niveau <strong>Propriétaire</strong>.</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="mt-6 pt-4 border-t border-slate-700 flex items-center text-sm text-green-400">
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Mise à jour déployée sur tous les serveurs.
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
