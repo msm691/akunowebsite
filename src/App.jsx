@@ -468,10 +468,34 @@ const LegalPage = () => {
 const PatchNotesPage = () => {
   const patchnotes = [
     {
+      date: "29 Novembre 2025 - 00h45",
+      version: "v1.2.3",
+      tag: "Administration & Outils",
+      tagColor: "green",
+      content: `
+Mise à jour axée sur les outils d'administration et la flexibilité.
+
+### 🆕 Nouveautés Administration
+* **Messagerie Staff (\`/dm\`)** : *[Admin]* Permet d'envoyer un Message Privé à un membre via le bot.
+  * *Options :* Message signé (votre pseudo) ou Anonyme (signé "L'Administration").
+  * *Utilité :* Contacter un membre pour une sanction, une récompense ou une info importante.
+
+### ⚡ Améliorations
+* **Emoji Stealer V2 (\`/emoji\`)** : La commande est maintenant plus intelligente !
+  * **Nouveau :** Copiez-collez simplement l'émoji d'un autre serveur dans la commande et Akuno l'ajoute.
+  * *Accepte toujours les liens URL classiques.*
+
+### 🛠️ Système
+* **Mode Maintenance (\`/maintenance\`)** : *[Owner]* Ajout d'un système de verrouillage global. Si une maintenance est en cours, le bot refuse les commandes utilisateurs (sauf créateurs) pour éviter les erreurs.
+
+> *La mise à jour est active. Merci d'utiliser Akuno !* 🦅
+      `
+    },
+    {
       date: "28 Novembre 2025 - 23h19",
       version: "v1.2.2",
       tag: "Nouveautés",
-      tagColor: "blue", // Pour personnaliser la couleur du badge
+      tagColor: "blue",
       content: `
 ### ✨ Nouvelles Commandes
 * **\`/rolemenu\`** : Création de menus de rôles interactifs via boutons (Self-assign roles).
@@ -518,11 +542,12 @@ Un correctif a été déployé pour résoudre des problèmes de permissions.
     }
   ];
 
-  // Helper pour les couleurs des tags
+  // Helper pour les couleurs des tags (J'ai ajouté le vert ici)
   const getTagStyle = (color) => {
     switch(color) {
       case 'orange': return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
       case 'purple': return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+      case 'green': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
       default: return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
     }
   };
@@ -577,7 +602,8 @@ Un correctif a été déployé pour résoudre des problèmes de permissions.
                     prose-headings:text-blue-300 prose-headings:font-bold prose-headings:mb-2 prose-headings:mt-4
                     prose-p:text-slate-300 prose-p:leading-relaxed prose-p:my-2
                     prose-li:text-slate-300 prose-li:marker:text-blue-500
-                    prose-strong:text-white prose-strong:font-bold"
+                    prose-strong:text-white prose-strong:font-bold
+                    prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-slate-900/50 prose-blockquote:px-4 prose-blockquote:py-1 prose-blockquote:rounded-r"
                   dangerouslySetInnerHTML={{ __html: marked.parse(pn.content) }}
                 />
               </div>
