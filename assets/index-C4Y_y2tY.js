@@ -210,8 +210,6 @@ Mise à jour axée sur les outils d'administration et la flexibilité.
 
 ### 🛠️ Système
 * **Mode Maintenance (\`/maintenance\`)** : *[Owner]* Ajout d'un système de verrouillage global. Si une maintenance est en cours, le bot refuse les commandes utilisateurs (sauf créateurs) pour éviter les erreurs.
-
-> *La mise à jour est active. Merci d'utiliser Akuno !* 🦅
       `},{date:"28 Novembre 2025 - 23h19",version:"v1.2.2",tag:"Nouveautés",tagColor:"blue",content:'\n### ✨ Nouvelles Commandes\n* **`/rolemenu`** : Création de menus de rôles interactifs via boutons (Self-assign roles).\n* **`/tempvoice`** : *[Premium]* Système de "Join to Create". Crée des salons vocaux temporaires et les supprime après usage.\n\n### 🛡️ Permissions\n* **`/rolemenu`** : Nécessite le niveau *Administrateur*.\n* **`/tempvoice`** : Nécessite le niveau *Propriétaire* (Premium).\n      '},{date:"28 Novembre 2025 - 10h59",version:"Hotfix",tag:"Correctif",tagColor:"orange",content:`
 ### 🚑 Correctif de Stabilité
 Un correctif a été déployé pour résoudre des problèmes de permissions.
