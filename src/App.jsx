@@ -24,7 +24,7 @@ const commandsData = [
     category: "Administration",
     icon: <Shield className="w-6 h-6 text-blue-400" />,
     count: 10,
-    cmds: ["/clear-invites", "/perm", "/perminfo", "/setadmin", "/setgoodbye", "/setlogs", "/setmod", "/setup", "/setwelcome", "/ticket"]
+    cmds: ["/clear-invites", "/perm", "/perminfo","/rolemenu", "/setadmin", "/setgoodbye", "/setlogs", "/setmod", "/setup", "/setwelcome", "/ticket"]
   },
   {
     category: "Informations",
@@ -48,7 +48,7 @@ const commandsData = [
     category: "Premium",
     icon: <Gem className="w-6 h-6 text-pink-400" />,
     count: 14,
-    cmds: ["/alladmin", "/allbot", "/backup", "/boosters", "/embed", "/emoji", "/giveaway", "/ia", "/massrole", "/moveall", "/renew", "/say", "/serverstats", "/snipe"]
+    cmds: ["/alladmin", "/allbot", "/backup", "/boosters", "/embed", "/emoji", "/giveaway", "/ia", "/massrole", "/moveall", "/renew", "/say", "/serverstats", "/snipe", "/tempvoice"]
   },
   {
     category: "Sécurité",
