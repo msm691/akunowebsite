@@ -1,22 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { marked } from "marked";
 import { 
-  Shield, 
-  Info, 
-  FileText, 
-  Hammer, 
-  Gem, 
-  Lock, 
-  Wrench, 
-  Menu, 
-  X, 
-  ChevronRight, 
-  ExternalLink, 
-  Server,
-  CheckCircle,
-  MessageCircle,
-  ScrollText,
-  Copy
+  Shield, Info, FileText, Hammer, Gem, Lock, Wrench, Menu, X, 
+  ChevronRight, ExternalLink, Server, CheckCircle, MessageCircle, 
+  ScrollText, Copy, Coins, TrendingUp, Users, Zap, Brain, LayoutGrid, 
+  Database, Trophy, Gavel, Rocket
 } from 'lucide-react';
 
 // --- DATA ---
@@ -72,6 +60,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
 
   const navItems = [
     { id: 'home', label: 'Accueil' },
+    { id: 'why', label: 'Pourquoi Akuno?' },
     { id: 'add', label: 'Ajouter le bot' },
     { id: 'contact', label: 'Contact' },
     { id: 'patchnotes', label: 'Patch Notes' },
@@ -716,6 +705,160 @@ Un correctif a été déployé pour résoudre des problèmes de permissions.
   );
 };
 
+const WhyAkunoPage = () => {
+  const features = [
+    {
+      title: "Sécurité & Sauvegarde",
+      icon: <Shield className="w-6 h-6 text-emerald-400" />,
+      description: "Dormez sur vos deux oreilles. Akuno protège votre travail.",
+      color: "from-emerald-500/20 to-teal-500/5",
+      border: "hover:border-emerald-500/50",
+      points: [
+        { label: "Système de Backup", desc: "Sauvegardez et restaurez rôles, salons et permissions en un clic.", highlight: true },
+        { label: "Anti-Raid & Anti-Abus", desc: "Protection auto contre le spam et les mentions massives." },
+        { label: "Logs Avancés", desc: "Une tour de contrôle qui surveille tout (vocal, messages, staff)." }
+      ]
+    },
+    {
+      title: "Économie Communautaire",
+      icon: <Coins className="w-6 h-6 text-yellow-400" />,
+      description: "Bien plus qu'un bot de monnaie. Un véritable jeu de stratégie.",
+      color: "from-yellow-500/20 to-orange-500/5",
+      border: "hover:border-yellow-500/50",
+      points: [
+        { label: "Système de TEAMS", desc: "Créez un clan, cotisez dans une banque commune et dominez le top.", highlight: true },
+        { label: "Casino Complet", desc: "Blackjack, Roulette, Slots et Coinflip interactifs." },
+        { label: "Commerce & Gains", desc: "Gagnez de l'argent en parlant et dépensez-le dans le Shop." }
+      ]
+    },
+    {
+      title: "Progression & Social",
+      icon: <TrendingUp className="w-6 h-6 text-purple-400" />,
+      description: "Récompensez vos membres les plus fidèles automatiquement.",
+      color: "from-purple-500/20 to-pink-500/5",
+      border: "hover:border-purple-500/50",
+      points: [
+        { label: "Système de Niveaux", desc: "Carte de profil, classement et Rôles Récompenses automatiques." },
+        { label: "Soutien Bio", desc: "Détection auto des liens en statut pour donner un rôle exclusif." },
+        { label: "Intelligence Artificielle", desc: "Interrogez Gemini (Google AI) directement depuis votre serveur.", icon: <Brain className="w-4 h-4 ml-1 inline text-pink-400"/> }
+      ]
+    },
+    {
+      title: "Administration & Modération",
+      icon: <Gavel className="w-6 h-6 text-red-400" />,
+      description: "Des outils puissants avec une sécurité hiérarchique stricte.",
+      color: "from-red-500/20 to-rose-500/5",
+      border: "hover:border-red-500/50",
+      points: [
+        { label: "Modération Sécurisée", desc: "Hiérarchie stricte : impossible de sanctionner un supérieur." },
+        { label: "Gestion des Rôles", desc: "Commandes de masse et gestion rapide des permissions." },
+        { label: "Support Ticket", desc: "Gestion des demandes membres en privé." }
+      ]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen pt-24 pb-20 px-4 bg-slate-900">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* En-tête Hero */}
+        <div className="text-center mb-20 space-y-6">
+          <div className="inline-flex items-center justify-center p-3 bg-indigo-500/10 rounded-2xl mb-2 ring-1 ring-indigo-500/50 shadow-lg shadow-indigo-500/20">
+            <LayoutGrid className="w-10 h-10 text-indigo-400" />
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight">
+            L'Architecture <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Ultime</span>
+          </h1>
+          <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+            Ne cherchez plus. **Akuno** n'est pas une simple addition, c'est une mise à niveau complète. 
+            Il centralise <span className="text-white font-semibold">Sécurité</span>, <span className="text-white font-semibold">Économie</span> et <span className="text-white font-semibold">Gestion</span>.
+          </p>
+        </div>
+
+        {/* Grille des fonctionnalités */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+          {features.map((feat, idx) => (
+            <div key={idx} className={`relative overflow-hidden rounded-3xl bg-slate-800/40 border border-slate-700 p-8 transition-all duration-300 group ${feat.border} hover:shadow-2xl hover:-translate-y-1`}>
+              {/* Background Gradient */}
+              <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${feat.color} blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-700 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    {feat.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">{feat.title}</h3>
+                </div>
+                
+                <p className="text-slate-400 mb-8 italic border-l-2 border-slate-600 pl-4">
+                  "{feat.description}"
+                </p>
+
+                <ul className="space-y-4">
+                  {feat.points.map((point, pIdx) => (
+                    <li key={pIdx} className="flex items-start gap-3">
+                      <div className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${point.highlight ? 'bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]' : 'bg-slate-600'}`} />
+                      <div>
+                        <span className={`font-bold ${point.highlight ? 'text-white' : 'text-slate-200'}`}>
+                          {point.label}
+                        </span>
+                        {point.icon}
+                        <span className="text-slate-400 text-sm block mt-0.5">
+                          {point.desc}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Section de conclusion "Pourquoi changer ?" */}
+        <div className="relative rounded-3xl overflow-hidden bg-slate-950 border border-slate-800 p-8 md:p-12 text-center">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-8 flex items-center justify-center gap-3">
+              <Rocket className="w-8 h-8 text-blue-500 animate-pulse" />
+              Pourquoi passer à Akuno ?
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {[
+                { title: "Zéro Latence", desc: "Hébergé sur des serveurs haute performance.", icon: <Zap className="w-5 h-5 text-yellow-400"/> },
+                { title: "Mises à jour", desc: "Un bot vivant qui écoute sa communauté.", icon: <TrendingUp className="w-5 h-5 text-green-400"/> },
+                { title: "Tout-en-un", desc: "Remplacez MEE6 et Dyno par un seul bot.", icon: <Server className="w-5 h-5 text-purple-400"/> }
+              ].map((item, i) => (
+                <div key={i} className="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 hover:border-blue-500/30 transition-colors">
+                  <div className="flex justify-center mb-3">{item.icon}</div>
+                  <h4 className="font-bold text-white mb-1">{item.title}</h4>
+                  <p className="text-sm text-slate-400">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a href="https://discord.com/api/oauth2/authorize?client_id=1443006002114072777&scope=bot+applications.commands&permissions=8" target="_blank" rel="noreferrer" 
+                 className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-600/20 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                 <Server className="w-5 h-5" /> Inviter le bot
+              </a>
+              <a href="https://discord.gg/akuno" target="_blank" rel="noreferrer"
+                 className="px-8 py-4 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-xl shadow-lg shadow-[#5865F2]/20 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                 <MessageCircle className="w-5 h-5" /> Serveur Support
+              </a>
+            </div>
+            <p className="mt-8 text-slate-500 italic font-medium">
+              Votre communauté mérite le meilleur. Elle mérite Akuno.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
 const Footer = ({ setActiveTab }) => (
   <footer className="bg-slate-950 border-t border-slate-800 pt-12 pb-8">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -769,7 +912,7 @@ const Footer = ({ setActiveTab }) => (
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
 
-  // Smooth scroll to top when tab changes
+  // Remonter en haut de page à chaque changement d'onglet
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
@@ -779,6 +922,8 @@ const App = () => {
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
       
       <main className="transition-opacity duration-500 ease-in-out">
+        
+        {/* === ACCUEIL === */}
         {activeTab === 'home' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
             <Hero setActiveTab={setActiveTab} />
@@ -786,24 +931,35 @@ const App = () => {
           </div>
         )}
         
+        {/* === NOUVEAU : POURQUOI AKUNO === */}
+        {activeTab === 'why' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <WhyAkunoPage />
+          </div>
+        )}
+        
+        {/* === AJOUTER LE BOT === */}
         {activeTab === 'add' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <AddBotPage />
           </div>
         )}
         
+        {/* === CONTACT / SUPPORT === */}
         {activeTab === 'contact' && (
           <div className="animate-in fade-in zoom-in-95 duration-500">
             <ContactPage />
           </div>
         )}
 
+        {/* === PATCH NOTES === */}
         {activeTab === 'patchnotes' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <PatchNotesPage />
           </div>
         )}
         
+        {/* === LEGAL === */}
         {activeTab === 'legal' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <LegalPage />
