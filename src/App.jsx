@@ -468,6 +468,34 @@ const LegalPage = () => {
 const PatchNotesPage = () => {
   const patchnotes = [
     {
+      date: "29 Novembre 2025 - 20h30",
+      version: "v1.4.1",
+      tag: "Surveillance & Promotion",
+      tagColor: "purple",
+      content: `
+**Akuno** renforce ses capacités de modération et vous offre un nouvel outil pour faire grandir votre communauté.
+
+### 📜 NOUVEAU : Logs Avancés
+La "Tour de Contrôle" s'agrandit. En plus des sanctions, le bot surveille désormais l'activité en temps réel dans le salon de logs :
+* **Messagerie :**
+  * 🗑️ **Suppressions** : Affiche le contenu des messages supprimés (Anti-Ghostping).
+  * ✏️ **Modifications** : Affiche le message "Avant" et "Après" l'édition.
+* **Vocal :**
+  * 🔊 **Tracking** : Logs précis des connexions, déconnexions et changements de salons vocaux.
+
+### 💜 NOUVEAU : Système de Soutien (Bio)
+Récompensez automatiquement les membres qui font la promotion de votre serveur !
+* **Commande :** \`/soutien texte:.gg/monserveur role:@Soutien etat:ON\`
+* **Fonctionnement :** Le bot scanne le statut personnalisé (Bio) des membres.
+  * S'ils mettent votre lien/texte ➔ Ils reçoivent le rôle.
+  * S'ils l'enlèvent ➔ Le rôle est retiré automatiquement.
+
+### 🛠️ Technique
+* **Intents :** Mise à jour du noyau pour lire les statuts des utilisateurs (\`GuildPresences\`).
+* **Optimisation :** Gestion améliorée des événements multiples.
+      `
+    },
+    {
       date: "29 Novembre 2025 - 19h15",
       version: "v1.4.0",
       tag: "ÉCONOMIE & TEAMS",
