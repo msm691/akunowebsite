@@ -468,6 +468,36 @@ const LegalPage = () => {
 const PatchNotesPage = () => {
   const patchnotes = [
     {
+      date: "29 Novembre 2025 - 14h00",
+      version: "v1.3.0",
+      tag: "MAJEUR",
+      tagColor: "gold", // Nouvelle couleur pour les versions majeures
+      content: `
+Une mise à jour massive débarque aujourd'hui sur **Akuno** ! Nous avons intégré un système de progression complet pour récompenser l'activité de vos membres.
+
+### 🏆 NOUVEAU : Système de Niveaux
+Engagez votre communauté avec un système d'expérience (XP) complet et automatique.
+
+**👤 Pour les membres :**
+* **Gagnez de l'XP** simplement en discutant dans les salons textuels.
+* **\`/rank\`** : Affichez votre Carte de Profil (Niveau, XP actuel, progression).
+* **\`/leaderboard\`** : Consultez le **Top 10** des membres les plus actifs du serveur.
+
+**⚙️ Pour les Admins (\`/rolereward\`) :**
+* Configurez des **Rôles Récompenses** automatiques !
+* *Exemple : Atteindre le Niveau 5 donne automatiquement le rôle "Habitué".*
+* Commandes : \`/rolereward [add/remove/list]\`.
+
+---
+
+### 🛡️ SÉCURITÉ & PERFORMANCE
+En coulisses, nous avons effectué un gros travail de maintenance :
+* ✅ **Optimisation Latence** : Le bot répond plus vite et gère mieux les pics de charge.
+* ✅ **Correctifs de Sécurité** : Renforcement des vérifications internes pour éviter les abus.
+* ✅ **Stabilité** : Amélioration de la base de données pour gérer le stockage de l'XP.
+      `
+    },
+    {
       date: "29 Novembre 2025 - 00h45",
       version: "v1.2.3",
       tag: "Administration & Outils",
@@ -487,6 +517,8 @@ Mise à jour axée sur les outils d'administration et la flexibilité.
 
 ### 🛠️ Système
 * **Mode Maintenance (\`/maintenance\`)** : *[Owner]* Ajout d'un système de verrouillage global. Si une maintenance est en cours, le bot refuse les commandes utilisateurs (sauf créateurs) pour éviter les erreurs.
+
+> *La mise à jour est active. Merci d'utiliser Akuno !* 🦅
       `
     },
     {
@@ -540,12 +572,13 @@ Un correctif a été déployé pour résoudre des problèmes de permissions.
     }
   ];
 
-  // Helper pour les couleurs des tags (J'ai ajouté le vert ici)
+  // Helper pour les couleurs des tags (Ajout de 'gold')
   const getTagStyle = (color) => {
     switch(color) {
       case 'orange': return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
       case 'purple': return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
       case 'green': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+      case 'gold': return 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
       default: return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
     }
   };
@@ -574,12 +607,18 @@ Un correctif a été déployé pour résoudre des problèmes de permissions.
             <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
               
               {/* Point sur la timeline */}
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-900 group-hover:bg-slate-800 group-hover:border-blue-500/50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-300">
-                <FileText className="w-5 h-5 text-blue-400" />
+              <div className={`flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-900 group-hover:bg-slate-800 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-300 ${
+                pn.tagColor === 'gold' ? 'group-hover:border-yellow-500/50' : 'group-hover:border-blue-500/50'
+              }`}>
+                <FileText className={`w-5 h-5 ${
+                  pn.tagColor === 'gold' ? 'text-yellow-400' : 'text-blue-400'
+                }`} />
               </div>
               
               {/* Carte de contenu */}
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 bg-slate-800/50 backdrop-blur border border-slate-700 rounded-2xl shadow-xl hover:border-blue-500/30 transition-all duration-300">
+              <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 bg-slate-800/50 backdrop-blur border border-slate-700 rounded-2xl shadow-xl transition-all duration-300 ${
+                  pn.tagColor === 'gold' ? 'hover:border-yellow-500/30' : 'hover:border-blue-500/30'
+              }`}>
                 
                 {/* Header de la carte */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
@@ -596,12 +635,16 @@ Un correctif a été déployé pour résoudre des problèmes de permissions.
 
                 {/* Contenu Markdown Stylisé */}
                 <div 
-                  className="prose prose-invert prose-sm max-w-none 
-                    prose-headings:text-blue-300 prose-headings:font-bold prose-headings:mb-2 prose-headings:mt-4
+                  className={`prose prose-invert prose-sm max-w-none 
+                    prose-headings:font-bold prose-headings:mb-2 prose-headings:mt-4
                     prose-p:text-slate-300 prose-p:leading-relaxed prose-p:my-2
-                    prose-li:text-slate-300 prose-li:marker:text-blue-500
+                    prose-li:text-slate-300
                     prose-strong:text-white prose-strong:font-bold
-                    prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-slate-900/50 prose-blockquote:px-4 prose-blockquote:py-1 prose-blockquote:rounded-r"
+                    prose-blockquote:bg-slate-900/50 prose-blockquote:px-4 prose-blockquote:py-1 prose-blockquote:rounded-r prose-blockquote:not-italic
+                    ${pn.tagColor === 'gold' 
+                      ? 'prose-headings:text-yellow-400 prose-li:marker:text-yellow-500 prose-blockquote:border-l-4 prose-blockquote:border-yellow-500 prose-hr:border-yellow-500/30' 
+                      : 'prose-headings:text-blue-300 prose-li:marker:text-blue-500 prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-hr:border-slate-700'
+                    }`}
                   dangerouslySetInnerHTML={{ __html: marked.parse(pn.content) }}
                 />
               </div>
