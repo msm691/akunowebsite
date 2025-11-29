@@ -468,10 +468,41 @@ const LegalPage = () => {
 const PatchNotesPage = () => {
   const patchnotes = [
     {
+      date: "29 Novembre 2025 - 19h15",
+      version: "v1.4.0",
+      tag: "ÉCONOMIE & TEAMS",
+      tagColor: "gold", 
+      content: `
+**Akuno** se transforme ! Nous déployons aujourd'hui un système économique complet. Votre activité sur le serveur a désormais une valeur réelle.
+
+### 💰 Gagnez de l'argent
+Fini le bénévolat ! Chaque action compte :
+* **Activité :** Gagnez des crédits simplement en discutant dans le chat ou en restant en vocal 🎙️.
+* **Bonus Quotidien :** Tapez \`/money daily\` chaque jour pour récupérer votre salaire.
+* **Business :** Échangez de l'argent entre membres avec \`/money pay\`.
+
+### 🎰 Le Casino d'Akuno
+Vous vous sentez chanceux ? Venez flamber vos gains !
+* **\`/blackjack\`** : Affrontez le croupier dans un jeu de cartes interactif.
+* **\`/gamble roulette\`** : Misez sur le Rouge, le Noir ou le Vert.
+* **\`/gamble slots\`** : Tentez le Jackpot à la machine à sous.
+* **\`/gamble coinflip\`** : Quitte ou double sur un pile ou face.
+
+### 🏴‍☠️ Le Système de TEAMS (Clans)
+C'est la grosse nouveauté ! Ne restez pas seul.
+* **Créez votre Empire :** Fondez votre propre Team avec \`/team create\`.
+* **Banque Commune :** Cotisez avec vos membres pour devenir la Team la plus riche du serveur.
+* **Classement :** Battez-vous pour la première place du \`/team top\`.
+
+### 🛍️ Le Magasin
+Dépensez vos crédits dans le \`/shop\` pour acheter des objets exclusifs ou des Rôles spéciaux !
+      `
+    },
+    {
       date: "29 Novembre 2025 - 14h00",
       version: "v1.3.0",
       tag: "MAJEUR",
-      tagColor: "gold", // Nouvelle couleur pour les versions majeures
+      tagColor: "gold",
       content: `
 Une mise à jour massive débarque aujourd'hui sur **Akuno** ! Nous avons intégré un système de progression complet pour récompenser l'activité de vos membres.
 
@@ -572,7 +603,7 @@ Un correctif a été déployé pour résoudre des problèmes de permissions.
     }
   ];
 
-  // Helper pour les couleurs des tags (Ajout de 'gold')
+  // Helper pour les couleurs des tags
   const getTagStyle = (color) => {
     switch(color) {
       case 'orange': return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
